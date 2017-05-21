@@ -1,4 +1,16 @@
-<ul>
-    <li>Savings account 111111 - 400,60</li>
-    <li>Current account 222222 - 123,00</li>
+<input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="find your account"
+/>
+
+<h2>Your accounts <span *ngIf="searchTerm">{{searchTerm}}</span>:</h2>
+
+<input type="button" value="Show/Hide List" (click)="toggleList()" />
+<ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
+    <li *ngFor="let account of accounts">{{account.name}} - {{account.price}}</li>
 </ul>
+
+<div *ngIf="accounts.length">
+  <h4>You have {{accounts.length}} accounts</h4>
+</div>
