@@ -7,7 +7,6 @@ import { Account } from './account.type';
 })
 export class AccountListComponent {
     private accounts: Array<Account>;
-    private viewAccounts: Array<Account>;
     private searchTerm: string;
     private listVisibility: boolean;
 
@@ -16,7 +15,6 @@ export class AccountListComponent {
             new Account('Savings account', 300),
             new Account('Current account', 500, 'Work expenses')
         ];
-        this.viewAccounts = this.accounts;
 
         this.listVisibility = true;
     }
@@ -25,18 +23,7 @@ export class AccountListComponent {
         this.listVisibility = !this.listVisibility;
     }
 
-    filterAccounts(): void {
-        if (this.searchTerm) {
-            this.viewAccounts = this.accounts.filter((element: Account) => {
-                return element.name.indexOf(this.searchTerm) >= 0;
-            });
-        } else {
-            this.viewAccounts = this.accounts;
-        }
-    }
-
     clearSearch(): void {
         this.searchTerm = '';
-        this.viewAccounts = this.accounts;
     }
 }

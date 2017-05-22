@@ -3,16 +3,15 @@
     [(ngModel)]="searchTerm"
     placeholder="find your account"
 />
-<button type="button" (click)="filterAccounts()">Search</button>
 <button type="button" (click)="clearSearch()">Clear</button>
 
 <h2>Your accounts:</h2>
 
 <input type="button" value="Show/Hide List" (click)="toggleList()" />
 <ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
-    <li *ngFor="let account of viewAccounts">{{account.name}}
+    <li *ngFor="let account of accounts | accountFilter:searchTerm">{{account.name}}
         <span *ngIf="account.friendlyName">({{account.friendlyName}})</span>
-        - {{account.amount}}</li>
+        - {{account.amount | currency:'EUR':true}}</li>
 </ul>
 
 <div *ngIf="accounts.length">
