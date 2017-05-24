@@ -25,7 +25,7 @@ export class AccountListComponent {
         this.listVisibility = !this.listVisibility;
     }
 
-    clearSearch(): void {
+    clearFilter(): void {
         this.searchTerm = '';
     }
 }
