@@ -11,12 +11,8 @@
 <input type="button" value="Show/Hide List" (click)="toggleList()" />
 
 <ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
-    <li *ngFor="let account of accounts | accountFilter:searchTerm">{{account.name}}
-        <span *ngIf="account.friendlyName">({{account.friendlyName}}) </span>
-        -
-        <span [ngClass]="{'positive': account.amount > 0, 'negative': account.amount < 0}">
-            {{account.amount | currency:'EUR':false}}
-        </span>
+    <li *ngFor="let account of accounts | accountFilter:searchTerm">
+        <account-list-item [account]="account"></account-list-item>
     </li>
 </ul>
 
