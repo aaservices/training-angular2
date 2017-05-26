@@ -1,0 +1,6 @@
+<span>{{account.name}}</span>
+<span *ngIf="account.friendlyName">({{account.friendlyName}}) </span>
+<span>-</span>
+<span [ngClass]="{'positive': account.amount > 0, 'negative': account.amount < 0}">
+    {{account.amount | currency:'EUR':false}}
+</span>
