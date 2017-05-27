@@ -10,6 +10,7 @@ export class AccountListComponent {
     private accounts: Array<Account>;
     private searchTerm: string;
     private listVisibility: boolean;
+    private selectedAccount: Account;
 
     constructor() {
         this.accounts = [
@@ -27,5 +28,9 @@ export class AccountListComponent {
 
     clearFilter(): void {
         this.searchTerm = '';
+    }
+
+    selectAccount(account: Account): void {
+        this.selectedAccount = account;
     }
 }
