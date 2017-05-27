@@ -1,8 +1,4 @@
-<input
-    type="text"
-    [(ngModel)]="searchTerm"
-    placeholder="find your account"
-/>
+<search-form (changed)="search($event)"></search-form>
 
 <button type="button" (click)="clearFilter()">Clear</button>
 

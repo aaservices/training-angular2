@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Account } from './account.type';
+import { SearchFormComponent } from '../utils/search-form/search-form';
 
 @Component({
     selector: 'account-list',
@@ -7,6 +8,7 @@ import { Account } from './account.type';
     styleUrls: ['app/accounts/account-list.component.css']
 })
 export class AccountListComponent {
+    @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private accounts: Array<Account>;
     private searchTerm: string;
     private listVisibility: boolean;
@@ -27,10 +29,14 @@ export class AccountListComponent {
     }
 
     clearFilter(): void {
-        this.searchTerm = '';
+        this.searchForm.clear();
     }
 
     selectAccount(account: Account): void {
         this.selectedAccount = account;
+    }
+
+    search(searchTerm: string) {
+        this.searchTerm = searchTerm;
     }
 }

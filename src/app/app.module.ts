@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AccountListComponent } from './accounts/account-list.component';
 import { AccountListItemComponent } from './accounts/account-list-item/account-list-item';
 import { AccountDetailsComponent } from './accounts/account-details/account-details';
+import { SearchFormComponent } from './utils/search-form/search-form';
 import { AccountFilterPipe } from './accounts/account-filter.pipe';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AccountFilterPipe } from './accounts/account-filter.pipe';
         AccountListComponent,
         AccountListItemComponent,
         AccountDetailsComponent,
-        AccountFilterPipe
+        AccountFilterPipe,
+        SearchFormComponent
     ],
     bootstrap: [AppComponent]
 })
