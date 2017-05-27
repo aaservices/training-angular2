@@ -1,0 +1,15 @@
+<div *ngIf="account">
+    <h1>Selected Account</h1>
+    <div>
+        Name: {{account.name}}
+    </div>
+    <div>
+        Friendly Name: {{account.friendlyName}}
+    </div>
+    <div>
+        Amount:
+        <span [ngClass]="{'positive': account.amount > 0, 'negative': account.amount < 0}">
+            {{account.amount | currency:'EUR':true}}
+        </span>
+    </div>
+</div>
