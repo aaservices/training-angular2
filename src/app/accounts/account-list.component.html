@@ -10,10 +10,14 @@
 
 <input type="button" value="Show/Hide List" (click)="toggleList()" />
 <ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
-    <li *ngFor="let account of accounts | accountFilter:searchTerm">{{account.name}}
+    <li *ngFor="let account of accounts | accountFilter:searchTerm">
+        {{account.name}}
         <span *ngIf="account.friendlyName">({{account.friendlyName}}) </span>
-        - <span [ngClass]="{'positive': account.amount > 0, 'negative': account.amount < 0}">
-            {{account.amount | currency:'EUR':false}}</span></li>
+        -
+        <span [ngClass]="{'positive': account.amount > 0, 'negative': account.amount < 0}">
+            {{account.amount | currency:'EUR':false}}
+        </span>
+    </li>
 </ul>
 
 <div *ngIf="accounts.length">
