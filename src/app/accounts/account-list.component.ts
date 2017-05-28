@@ -12,7 +12,7 @@ export class AccountListComponent {
     private accounts: Array<Account>;
     private searchTerm: string;
     private listVisibility: boolean;
-    private selectedAccount: Account;
+    private selectedAccount: Account | null;
 
     constructor() {
         this.accounts = [
@@ -30,13 +30,18 @@ export class AccountListComponent {
 
     clearFilter(): void {
         this.searchForm.clear();
+        this.clearSelectedAccount();
     }
 
     selectAccount(account: Account): void {
         this.selectedAccount = account;
     }
 
-    search(searchTerm: string) {
+    clearSelectedAccount(): void {
+        this.selectedAccount = null;
+    }
+
+    search(searchTerm: string): void {
         this.searchTerm = searchTerm;
     }
 }
