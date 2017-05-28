@@ -15,12 +15,10 @@ export class SearchFormComponent {
 
     filterChanged(event: Event) {
         event.preventDefault();
-        debugger;
         this.changed.emit(this.term);
     }
 
     clear(): void {
-        debugger;
         this.term = '';
         this.changed.emit(this.term);
     }
