@@ -1,5 +1,4 @@
 import { Account } from './../account.type';
-import { AccountListComponent } from './../account-list.component';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
