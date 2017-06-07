@@ -2,6 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Account } from './account.type';
 import { SearchFormComponent } from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
+import {Logger} from '../logger.service';
+
+let silentLogger = {
+    logs: ['Silent logger says "Shhhhh!". Provided via "useValue"'],
+    log: () => {}
+};
 
 @Component({
     selector: 'account-list',
@@ -9,8 +15,11 @@ import {AccountListService} from './account-list.service';
     styleUrls: ['app/accounts/account-list.component.css'],
     providers:[
         AccountListService,
+        { provide: Logger, useValue: silentLogger }
     ]
 })
+
+
 export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private accounts: Array<Account>;
