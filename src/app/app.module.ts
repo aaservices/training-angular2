@@ -20,7 +20,6 @@ import {AccountListService} from './accounts/account-list.service';
         AccountFilterPipe,
         SearchFormComponent
     ],
-    bootstrap: [AppComponent],
-    providers:[AccountListService]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
