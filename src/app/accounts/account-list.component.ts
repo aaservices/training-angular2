@@ -7,7 +7,9 @@ import {AccountListService} from './account-list.service';
     selector: 'account-list',
     templateUrl: 'app/accounts/account-list.component.html',
     styleUrls: ['app/accounts/account-list.component.css'],
-    providers:[AccountListService]
+    providers:[
+        AccountListService,
+    ]
 })
 export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;

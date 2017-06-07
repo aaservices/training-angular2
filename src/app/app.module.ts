@@ -9,6 +9,7 @@ import { AccountDetailsComponent } from './accounts/account-details/account-deta
 import { SearchFormComponent } from './utils/search-form/search-form';
 import { AccountFilterPipe } from './accounts/account-filter.pipe';
 import {AccountListService} from './accounts/account-list.service';
+import {BetterLogger} from './betterLogger.service';
 import {Logger} from './logger.service';
 
 
@@ -23,6 +24,6 @@ import {Logger} from './logger.service';
         SearchFormComponent
     ],
     bootstrap: [AppComponent],
-    providers:[Logger]
+    providers:[{ provide: Logger, useClass: BetterLogger }]
 })
 export class AppModule { }
