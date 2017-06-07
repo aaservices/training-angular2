@@ -4,20 +4,15 @@ import { SearchFormComponent } from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
 import {DI_CONFIG, APP_CONFIG, AppConfig} from '../app-config';
 import {Logger} from '../logger.service';
-
-// let silentLogger = {
-//     logs: ['Silent logger says "Shhhhh!". Provided via "useValue"'],
-//     log: () => {}
-// };
+import {accountListServiceProvider} from './account-list.service.provider';
 
 @Component({
     selector: 'account-list',
     templateUrl: 'app/accounts/account-list.component.html',
     styleUrls: ['app/accounts/account-list.component.css'],
     providers:[
-        AccountListService,
+        accountListServiceProvider,
         Logger,
-        // { provide: Logger, useValue: silentLogger },
         {provide: APP_CONFIG, useValue: DI_CONFIG}
     ]
 })
