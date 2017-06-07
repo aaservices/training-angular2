@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 
 export class Logger {
     logs: string[] = []; // capture logs for testing

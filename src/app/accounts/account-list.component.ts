@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Account } from './account.type';
 import { SearchFormComponent } from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
-import {Logger} from '../logger.service';
 
 @Component({
     selector: 'account-list',
@@ -17,8 +16,7 @@ export class AccountListComponent {
     private listVisibility: boolean;
     private selectedAccount: Account | null;
 
-    constructor(private accountListService:AccountListService, private logger:Logger) {
-        logger.log('Initialising list...')
+    constructor(private accountListService:AccountListService) {
         this.accounts = accountListService.getAccountList();
         this.listVisibility = true;
     }
