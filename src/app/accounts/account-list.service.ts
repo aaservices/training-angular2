@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Account} from './account.type';
+import {ACCOUNTS} from './mock-accounts'
 
 @Injectable()
 export class AccountListService {
@@ -7,10 +7,6 @@ export class AccountListService {
     constructor(){}
 
     getAccountList() {
-        return [
-            new Account('Savings account', 300),
-            new Account('Current account', 500, 'Work expenses'),
-            new Account('Loan', -200)
-        ];
+        return ACCOUNTS;
     }
 }
