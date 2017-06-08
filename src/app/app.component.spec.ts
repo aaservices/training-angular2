@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, ComponentFixtureAutoDetect } from '@angular/core/testing';
+import { ComponentFixture, TestBed, ComponentFixtureAutoDetect, async } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
 import { DebugElement }    from '@angular/core';
 import { AppComponent } from './app.component';
@@ -9,11 +9,18 @@ describe('AppComponent', () => {
     let de: DebugElement;
     let el: HTMLElement;
 
-    beforeEach(() => {
+    beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ AppComponent ], // declare the test component
             providers: [{provide: ComponentFixtureAutoDetect, useValue: true}]
-        });
+        }).compileComponents();
+    }));
+
+    beforeEach(() => {
+        // TestBed.configureTestingModule({
+        //     declarations: [ AppComponent ], // declare the test component
+        //     providers: [{provide: ComponentFixtureAutoDetect, useValue: true}]
+        // });
 
         fixture = TestBed.createComponent(AppComponent);
 
