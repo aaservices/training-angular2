@@ -6,8 +6,8 @@ let accountListServiceFactory = (logger: Logger) => {
 };
 
 
-export let accountListServiceProvider =
-    { provide: AccountListService,
-        useFactory: accountListServiceFactory,
-        deps: [Logger]
-    };
+export let accountListServiceProvider = {
+    provide: AccountListService,
+    useFactory: accountListServiceFactory,
+    deps: [Logger]
+};

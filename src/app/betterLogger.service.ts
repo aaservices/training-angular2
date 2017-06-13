@@ -6,7 +6,7 @@ export class BetterLogger {
 
     log(message: string) {
         this.logs.push(message);
-        console.log("Better Logger:"+message);
+        console.log('Better Logger:' + message);
     }
 
 }
