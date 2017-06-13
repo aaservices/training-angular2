@@ -23,7 +23,7 @@ import {Observable} from 'rxjs/Observable';
 export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private errorMessage: string;
-    private accounts: Promise<Account[]>;
+    private accounts: Account[] = [];
     private searchTerm: string;
     private listVisibility: boolean;
     private selectedAccount: Account | null;
@@ -43,7 +43,9 @@ export class AccountListComponent {
     }
 
     getAccounts() {
-        this.accounts = this.accountListService.getAccounts();
+        this.accountListService.getAccounts()
+            .then(accounts => this.accounts = accounts)
+            .catch(error => this.errorMessage = error);
     }
 
     toggleList(): void {
