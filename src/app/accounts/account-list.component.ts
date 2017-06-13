@@ -43,7 +43,8 @@ export class AccountListComponent {
     }
 
     getAccounts() {
-        this.accounts = this.accountListService.getAccounts();
+        this.accounts = this.accountListService.getAccounts()
+            .catch(e => console.error(e)); // for demo purposes only
     }
 
     toggleList(): void {
