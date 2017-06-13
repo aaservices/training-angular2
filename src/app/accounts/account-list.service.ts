@@ -18,7 +18,7 @@ export class AccountListService {
 
     }
 
-    getAccounts() {
+    getAccounts(): Observable<Account[]> {
         return this.http.get(this.accountsUrl)
             .map(this.extractData)
             .catch(this.handleError);
