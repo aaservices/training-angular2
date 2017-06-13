@@ -36,12 +36,16 @@ export class AccountListComponent {
             this.logger.log('AppConfig ' + appConfig.apiEndpoint);
         }
 
-        accountListService.getAccounts().subscribe(
+        this.getAccounts();
+
+        this.listVisibility = true;
+    }
+
+    getAccounts() {
+        this.accountListService.getAccounts().subscribe(
             accounts => this.accounts = accounts,
             error => this.errorMessage = <any>error
         );
-
-        this.listVisibility = true;
     }
 
     toggleList(): void {
