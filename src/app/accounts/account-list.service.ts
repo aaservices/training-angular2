@@ -20,13 +20,12 @@ export class AccountListService {
 
     }
 
-    getAccounts(term: string): Promise<Account[]> {
+    getAccounts(term: string): Observable<Account[]> {
         let params = new URLSearchParams();
         params.set('name', term); // the account's name value
 
         return this.http.get(this.accountsUrl, {search: params})
-            .toPromise()
-            .then(this.extractData)
+            .map(this.extractData)
             .catch(this.handleError);
     }
 

@@ -22,7 +22,7 @@ import { AccountListService } from './accounts/account-list.service';
         FormsModule,
         HttpModule,
         JsonpModule,
-        InMemoryWebApiModule.forRoot(InMemDataService) // only for demo purposes
+        InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }) // only for demo purposes
     ],
     declarations: [
         AppComponent,
