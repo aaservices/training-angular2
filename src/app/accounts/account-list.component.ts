@@ -37,9 +37,13 @@ export class AccountListComponent {
             this.logger.log('AppConfig ' + appConfig.apiEndpoint);
         }
 
-        this.accounts = accountListService.getAccounts();
+        this.getAccounts();
 
         this.listVisibility = true;
+    }
+
+    getAccounts() {
+        this.accounts = this.accountListService.getAccounts();
     }
 
     toggleList(): void {
