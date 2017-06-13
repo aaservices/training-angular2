@@ -11,7 +11,7 @@ import {Account} from './account.type';
 @Injectable()
 export class AccountListService {
 
-    private accountsUrl = 'api/accounts';  // URL to web API
+    private accountsUrl = 'api/accountssssss';  // URL to web API
 
     constructor(
         @Optional() private http: Http
@@ -31,17 +31,8 @@ export class AccountListService {
         return body.data || { };
     }
 
-    private handleError (error: Response | any) {
-        // In a real world app, you might use a remote logging infrastructure
-        let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
-        console.error(errMsg);
-        return Observable.throw(errMsg);
+    private handleError (error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
     }
 }

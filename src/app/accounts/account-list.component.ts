@@ -4,7 +4,6 @@ import {SearchFormComponent} from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
 import {DI_CONFIG, APP_CONFIG, AppConfig} from '../app-config';
 import {BetterLogger} from '../betterLogger.service';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'account-list',
