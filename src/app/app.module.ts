@@ -12,6 +12,7 @@ import { AccountDetailsComponent } from './accounts/account-details/account-deta
 import { SearchFormComponent } from './utils/search-form/search-form';
 import { AccountFilterPipe } from './accounts/account-filter.pipe';
 import { Logger } from './logger.service';
+import { AccountListService } from './accounts/account-list.service';
 
 @NgModule({
     imports: [
@@ -28,6 +29,6 @@ import { Logger } from './logger.service';
         SearchFormComponent
     ],
     bootstrap: [AppComponent],
-    providers:[Logger]
+    providers: [Logger, AccountListService]
 })
 export class AppModule { }

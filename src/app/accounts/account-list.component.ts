@@ -3,7 +3,6 @@ import {Account} from './account.type';
 import {SearchFormComponent} from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
 import {DI_CONFIG, APP_CONFIG, AppConfig} from '../app-config';
-import {accountListServiceProvider} from './account-list.service.provider';
 import {BetterLogger} from '../betterLogger.service';
 
 @Component({
@@ -11,7 +10,7 @@ import {BetterLogger} from '../betterLogger.service';
     templateUrl: 'app/accounts/account-list.component.html',
     styleUrls: ['app/accounts/account-list.component.css'],
     providers: [
-        accountListServiceProvider,
+        AccountListService,
         {
             provide: APP_CONFIG,
             useValue: DI_CONFIG
