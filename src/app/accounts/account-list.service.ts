@@ -4,6 +4,7 @@ import {Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 import {Account} from './account.type';
 
@@ -18,9 +19,10 @@ export class AccountListService {
 
     }
 
-    getAccounts(): Observable<Account[]> {
+    getAccounts(): Promise<Account[]> {
         return this.http.get(this.accountsUrl)
             .map(this.extractData)
+            .toPromise()
             .catch(this.handleError);
     }
 

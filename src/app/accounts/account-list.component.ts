@@ -23,7 +23,7 @@ import {Observable} from 'rxjs/Observable';
 export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private errorMessage: string;
-    private accounts: Observable<Account[]>;
+    private accounts: Promise<Account[]>;
     private searchTerm: string;
     private listVisibility: boolean;
     private selectedAccount: Account | null;
