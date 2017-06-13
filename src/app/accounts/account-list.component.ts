@@ -21,7 +21,8 @@ import {BetterLogger} from '../betterLogger.service';
 
 export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
-    private accounts: Array<Account>;
+    private errorMessage: string;
+    private accounts: Account[] = [];
     private searchTerm: string;
     private listVisibility: boolean;
     private selectedAccount: Account | null;
@@ -32,10 +33,14 @@ export class AccountListComponent {
         @Inject(APP_CONFIG) appConfig: AppConfig
     ) {
         if (this.logger) {
-            debugger;
             this.logger.log('AppConfig ' + appConfig.apiEndpoint);
         }
-        this.accounts = accountListService.getAccountList();
+
+        accountListService.getAccounts().subscribe(
+            accounts => this.accounts = accounts,
+            error => this.errorMessage = <any>error
+        );
+
         this.listVisibility = true;
     }
 
