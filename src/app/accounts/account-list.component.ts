@@ -9,6 +9,8 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
 import {Observable} from 'rxjs/Observable';
+import {error} from 'selenium-webdriver';
+import {Card} from './card.type';
 
 @Component({
     selector: 'account-list',
@@ -26,9 +28,9 @@ import {Observable} from 'rxjs/Observable';
 
 export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
-    // private errorMessage: string;
-    private accounts: Observable<Account[]>;
-    private searchTermStream = new Subject<string>();
+    private errorMessage: string;
+    private accounts: Account[] = [];
+    private cards: Card[] = [];
     private listVisibility: boolean;
     private selectedAccount: Account | null;
 
@@ -41,24 +43,31 @@ export class AccountListComponent {
             this.logger.log('AppConfig ' + appConfig.apiEndpoint);
         }
 
-        this.getAccounts();
+        this.getAllData();
 
         this.listVisibility = true;
 
-        this.accounts = this.searchTermStream
-            .debounceTime(300)
-            .distinctUntilChanged()
-            .switchMap((term: string) => this.getAccounts(term));
+    }
 
-        // this.search('');
+    getAllData() {
+        this.accountListService.getAllData()
+            .subscribe(
+                data => this.handleData(data),
+                error => console.error(error)
+            );
     }
 
     getAccounts(searchTerm?: string) {
-        return this.accountListService.getAccounts(searchTerm);
-            // .subscribe(
-            //     accounts => this.accounts = accounts,
-            //     error => this.errorMessage = error
-            // );
+        return this.accountListService.getAccounts(searchTerm)
+            .subscribe(
+                accounts => this.accounts = accounts,
+                error => this.errorMessage = error
+            );
+    }
+
+    handleData(data: any) {
+        this.accounts = data[0];
+        this.cards = data[1];
     }
 
     toggleList(): void {
@@ -79,6 +88,6 @@ export class AccountListComponent {
     }
 
     search(searchTerm: string): void {
-        this.searchTermStream.next(searchTerm);
+        this.getAccounts(searchTerm);
     }
 }

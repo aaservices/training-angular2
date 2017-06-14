@@ -2,22 +2,35 @@
 
 <button type="button" (click)="clearFilter()">Clear</button>
 
-<h1>Your accounts <span *ngIf="searchTerm">{{searchTerm}}</span>:</h1>
+<div *ngIf="accounts">
+    <h1>Your accounts <span *ngIf="searchTerm">{{searchTerm}}</span>:</h1>
 
-<input type="button" value="Show/Hide List" (click)="toggleList()" />
+    <input type="button" value="Show/Hide List" (click)="toggleList()" />
 
-<div *ngIf="errorMessage" style="color: red;">{{errorMessage}}</div>
-<ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
-    <li *ngFor="let account of accounts | async">
-        <account-list-item
-            [account]="account"
-            (accountSelect)="selectAccount($event)"
-        ></account-list-item>
-    </li>
-</ul>
+    <div *ngIf="errorMessage" style="color: red;">{{errorMessage}}</div>
+    <ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
+        <li *ngFor="let account of accounts">
+            <account-list-item
+                [account]="account"
+                (accountSelect)="selectAccount($event)"
+            ></account-list-item>
+        </li>
+    </ul>
+</div>
 
 <div *ngIf="accounts.length">
   <h4>You have {{accounts.length}} accounts</h4>
+</div>
+
+
+<div *ngIf="cards">
+    <h1>Your cards:</h1>
+
+    <ul>
+        <li *ngFor="let card of cards">
+            {{card.name}} {{card.amount}} - {{card.status}}
+        </li>
+    </ul>
 </div>
 
 <account-details [account]="selectedAccount">

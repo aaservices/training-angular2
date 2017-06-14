@@ -9,8 +9,15 @@ export class InMemDataService implements InMemoryDbService {
             {name: 'Money market account', amount: 2000, privacy: true}
         ];
 
+        let cards = [
+            {name: 'MasterCard', amount: 200, status: 'ACTIVE'},
+            {name: 'Visa', amount: 500, status: 'ACTIVE'},
+            {name: 'American Express', amount: -200, status: 'BANNED'},
+        ];
+
         return {
-            accounts
+            accounts,
+            cards
         };
     }
 }
