@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
-
-// only for demo purposes
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemDataService } from './data-service/InMemoryDataService';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AccountListComponent } from './accounts/account-list.component';
@@ -20,9 +16,7 @@ import { AccountListService } from './accounts/account-list.service';
     imports: [
         BrowserModule,
         FormsModule,
-        HttpModule,
-        JsonpModule,
-        InMemoryWebApiModule.forRoot(InMemDataService, { delay: 500 }) // only for demo purposes
+        HttpModule
     ],
     declarations: [
         AppComponent,
