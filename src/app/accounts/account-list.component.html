@@ -7,6 +7,7 @@
 <input type="button" value="Show/Hide List" (click)="toggleList()" />
 
 <div *ngIf="errorMessage" style="color: red;">{{errorMessage}}</div>
+
 <ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
     <li *ngFor="let account of accounts">
         <account-list-item

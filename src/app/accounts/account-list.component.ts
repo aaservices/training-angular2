@@ -4,7 +4,10 @@ import {SearchFormComponent} from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
 import {DI_CONFIG, APP_CONFIG, AppConfig} from '../app-config';
 import {BetterLogger} from '../betterLogger.service';
-import {Observable} from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
     selector: 'account-list',
@@ -24,7 +27,7 @@ export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private errorMessage: string;
     private accounts: Account[] = [];
-    private searchTerm: string;
+    private searchTermStream = new BehaviorSubject<string>(null);
     private listVisibility: boolean;
     private selectedAccount: Account | null;
 
@@ -40,12 +43,34 @@ export class AccountListComponent {
         this.getAccounts();
 
         this.listVisibility = true;
+
+        this.initSearchTerm();
+    }
+
+    initSearchTerm() {
+        this.searchTermStream
+            .debounceTime(300)
+            .subscribe(
+                searchTerm => {
+                    if (searchTerm === null) {
+                        return;
+                    }
+
+                    return this.accountListService.getAccounts(searchTerm).subscribe(
+                        accounts => this.accounts = accounts,
+                        error => this.errorMessage = error
+                    );
+                }
+            );
+
     }
 
     getAccounts(searchTerm?: string) {
-        this.accountListService.getAccounts(searchTerm)
-            .then(accounts => this.accounts = accounts)
-            .catch(error => this.errorMessage = error);
+        return this.accountListService.getAccounts(searchTerm)
+            .subscribe(
+                accounts => this.accounts = accounts,
+                error => this.errorMessage = error
+            );
     }
 
     toggleList(): void {
@@ -66,6 +91,6 @@ export class AccountListComponent {
     }
 
     search(searchTerm: string): void {
-        this.getAccounts(searchTerm);
+        this.searchTermStream.next(searchTerm);
     }
 }
