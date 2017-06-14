@@ -46,18 +46,23 @@ export class AccountListComponent {
         this.listVisibility = true;
 
         this.initSearchTerm();
-
     }
 
-    initSearchTerm(){
+    initSearchTerm() {
         this.searchTermStream
             .debounceTime(300)
             .distinctUntilChanged()
             .subscribe(
-                searchTerm => this.accountListService.getAccounts(searchTerm).subscribe(
-                    accounts => this.accounts = accounts,
-                    error => this.errorMessage = error
-                )
+                searchTerm => {
+                    if (!searchTerm) {
+                        return;
+                    }
+
+                    return this.accountListService.getAccounts(searchTerm).subscribe(
+                        accounts => this.accounts = accounts,
+                        error => this.errorMessage = error
+                    );
+                }
             );
 
     }

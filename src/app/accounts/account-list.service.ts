@@ -12,7 +12,7 @@ import {Account} from './account.type';
 @Injectable()
 export class AccountListService {
 
-    private accountsUrl = 'api/accounts';  // URL to web API
+    private accountsUrl = 'http://localhost:3004/accounts';  // URL to web API
 
     constructor(
         @Optional() private http: Http
@@ -22,7 +22,7 @@ export class AccountListService {
 
     getAccounts(term: string): Observable<Account[]> {
         let params = new URLSearchParams();
-        params.set('name', term); // the account's name value
+        params.set('q', term); // the account's name value
 
         return this.http.get(this.accountsUrl, {search: params})
             .map(this.extractData)
@@ -30,8 +30,7 @@ export class AccountListService {
     }
 
     private extractData(res: Response): Account[] {
-        let body = res.json();
-        return body.data || { };
+        return res.json().data || res.json() || { };
     }
 
     private handleError (error: Response | any) {
