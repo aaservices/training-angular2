@@ -11,7 +11,7 @@ import {Account} from './account.type';
 @Injectable()
 export class AccountListService {
 
-    private accountsUrl = 'api/accountssssss';  // URL to web API
+    private accountsUrl = 'api/accounts';  // URL to web API
 
     constructor(
         @Optional() private http: Http
