@@ -20,8 +20,8 @@ export class AccountListService {
 
     getAccounts(): Promise<Account[]> {
         return this.http.get(this.accountsUrl)
-            .map(this.extractData)
             .toPromise()
+            .then(this.extractData)
             .catch(this.handleError);
     }
 

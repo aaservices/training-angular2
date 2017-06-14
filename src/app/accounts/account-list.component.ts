@@ -4,7 +4,6 @@ import {SearchFormComponent} from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
 import {DI_CONFIG, APP_CONFIG, AppConfig} from '../app-config';
 import {BetterLogger} from '../betterLogger.service';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'account-list',
@@ -23,7 +22,7 @@ import {Observable} from 'rxjs/Observable';
 export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private errorMessage: string;
-    private accounts: Promise<Account[]>;
+    private accounts: Account[] = [];
     private searchTerm: string;
     private listVisibility: boolean;
     private selectedAccount: Account | null;
@@ -43,8 +42,9 @@ export class AccountListComponent {
     }
 
     getAccounts() {
-        this.accounts = this.accountListService.getAccounts()
-            .catch(e => console.error(e)); // for demo purposes only
+        this.accountListService.getAccounts()
+            .then(accounts => this.accounts = accounts)
+            .catch(error => this.errorMessage = error);
     }
 
     toggleList(): void {
