@@ -10,7 +10,7 @@ import {Account} from './account.type';
 @Injectable()
 export class AccountListService {
 
-    private accountsUrl = 'api/accounts';  // URL to web API
+    private accountsUrl = 'http://localhost:3004/accounts';  // URL to web API
 
     constructor(
         @Optional() private http: Http
@@ -25,8 +25,7 @@ export class AccountListService {
     }
 
     private extractData(res: Response): Account[] {
-        let body = res.json();
-        return body.data || { };
+        return res.json().data || res.json() || { };
     }
 
     private handleError (error: Response | any) {
