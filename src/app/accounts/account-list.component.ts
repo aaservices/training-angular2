@@ -4,12 +4,9 @@ import {SearchFormComponent} from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
 import {DI_CONFIG, APP_CONFIG, AppConfig} from '../app-config';
 import {BetterLogger} from '../betterLogger.service';
-import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
-import {Observable} from 'rxjs/Observable';
-import {error} from 'selenium-webdriver';
 import {Card} from './card.type';
 
 @Component({
