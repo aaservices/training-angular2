@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api'; // only for demo purposes
-
-import { InMemDataService } from './data-service/InMemoryDataService'; // only for demo purposes
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AccountListComponent } from './accounts/account-list.component';
@@ -18,7 +16,7 @@ import { AccountListService } from './accounts/account-list.service';
     imports: [
         BrowserModule,
         FormsModule,
-        InMemoryWebApiModule.forRoot(InMemDataService)
+        HttpModule
     ],
     declarations: [
         AppComponent,
