@@ -8,7 +8,7 @@
 
 <div *ngIf="errorMessage" style="color: red;">{{errorMessage}}</div>
 <ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
-    <li *ngFor="let account of accounts | accountFilter:searchTerm">
+    <li *ngFor="let account of accounts | async | accountFilter:searchTerm">
         <account-list-item
             [account]="account"
             (accountSelect)="selectAccount($event)"
