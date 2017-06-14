@@ -8,5 +8,4 @@ export class BetterLogger {
         this.logs.push(message);
         console.log('Better Logger:' + message);
     }
-
 }

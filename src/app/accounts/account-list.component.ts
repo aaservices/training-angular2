@@ -41,8 +41,8 @@ export class AccountListComponent {
         this.listVisibility = true;
     }
 
-    getAccounts() {
-        this.accountListService.getAccounts()
+    getAccounts(searchTerm?: string) {
+        this.accountListService.getAccounts(searchTerm)
             .then(accounts => this.accounts = accounts)
             .catch(error => this.errorMessage = error);
     }
@@ -65,6 +65,6 @@ export class AccountListComponent {
     }
 
     search(searchTerm: string): void {
-        this.searchTerm = searchTerm;
+        this.getAccounts(searchTerm);
     }
 }

@@ -1,9 +1,10 @@
 import {Injectable, Optional} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, URLSearchParams} from '@angular/http';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/do';
 
 import {Account} from './account.type';
 
@@ -18,8 +19,11 @@ export class AccountListService {
 
     }
 
-    getAccounts(): Promise<Account[]> {
-        return this.http.get(this.accountsUrl)
+    getAccounts(term: string): Promise<Account[]> {
+        let params = new URLSearchParams();
+        params.set('name', term); // the account's name value
+
+        return this.http.get(this.accountsUrl, {search: params})
             .toPromise()
             .then(this.extractData)
             .catch(this.handleError);
