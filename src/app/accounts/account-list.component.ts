@@ -8,7 +8,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/distinctUntilChanged';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'account-list',
@@ -28,7 +27,7 @@ export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private errorMessage: string;
     private accounts: Account[] = [];
-    private searchTermStream = new BehaviorSubject<string>('');
+    private searchTermStream = new BehaviorSubject<string>(null);
     private listVisibility: boolean;
     private selectedAccount: Account | null;
 
@@ -51,10 +50,9 @@ export class AccountListComponent {
     initSearchTerm() {
         this.searchTermStream
             .debounceTime(300)
-            .distinctUntilChanged()
             .subscribe(
                 searchTerm => {
-                    if (!searchTerm) {
+                    if (searchTerm === null) {
                         return;
                     }
 
