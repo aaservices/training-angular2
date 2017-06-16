@@ -3,6 +3,7 @@ import {Account} from './account.type';
 import {SearchFormComponent} from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
 import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
     selector: 'account-list',
@@ -17,6 +18,7 @@ export class AccountListComponent {
     private errorMessage: string;
     private accounts: Observable<Account[]>;
     private searchTerm: string;
+    private searchTermStream = new BehaviorSubject<string>('');
     private listVisibility: boolean;
     private selectedAccount: Account | null;
 
