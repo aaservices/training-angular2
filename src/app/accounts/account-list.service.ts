@@ -1,5 +1,5 @@
 import {Injectable, Optional} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, URLSearchParams} from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -18,8 +18,11 @@ export class AccountListService {
 
     }
 
-    getAccounts(): Observable<Account[]> {
-        return this.http.get(this.accountsUrl)
+    getAccounts(term?: string): Observable<Account[]> {
+        let params = new URLSearchParams();
+        params.set('q', term); // the account's name value
+
+        return this.http.get(this.accountsUrl, {search: params})
             .map(this.extractData)
             .catch(this.handleError);
     }
