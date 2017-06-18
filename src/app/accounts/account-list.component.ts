@@ -1,4 +1,4 @@
-import {Component, ViewChild, Inject, Optional} from '@angular/core';
+import { Component, ViewChild, Inject, Optional, OnInit } from '@angular/core';
 import {Account} from './account.type';
 import {SearchFormComponent} from '../utils/search-form/search-form';
 import {AccountListService} from './account-list.service';
@@ -13,7 +13,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 })
 
 
-export class AccountListComponent {
+export class AccountListComponent implements OnInit {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private errorMessage: string;
     private accounts: Observable<Account[]>;
@@ -22,7 +22,9 @@ export class AccountListComponent {
     private listVisibility: boolean;
     private selectedAccount: Account | null;
 
-    constructor(private accountListService: AccountListService) {
+    constructor(private accountListService: AccountListService) {}
+
+    ngOnInit() {
         this.getAccounts();
         this.listVisibility = true;
         this.initSearchTerm();
