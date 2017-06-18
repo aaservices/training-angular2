@@ -17,7 +17,6 @@ export class AccountListComponent implements OnInit {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private errorMessage: string;
     private accounts: Observable<Account[]>;
-    private searchTerm: string;
     private searchTermStream = new BehaviorSubject<string>('');
     private listVisibility: boolean;
     private selectedAccount: Account | null;
@@ -33,9 +32,8 @@ export class AccountListComponent implements OnInit {
     initSearchTerm() {
         this.searchTermStream
             .subscribe(
-                searchTerm => {
-                    this.accounts = this.accountListService.getAccounts(searchTerm);
-                }
+                searchTerm => this.accounts = this.accountListService.getAccounts(searchTerm),
+                error => this.errorMessage = error
             );
     }
 
