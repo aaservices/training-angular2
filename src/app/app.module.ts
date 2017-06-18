@@ -11,12 +11,14 @@ import { SearchFormComponent } from './utils/search-form/search-form';
 import { AccountFilterPipe } from './accounts/account-filter.pipe';
 import { Logger } from './logger.service';
 import { AccountListService } from './accounts/account-list.service';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
-        HttpModule
+        HttpModule,
+        AppRoutingModule
     ],
     declarations: [
         AppComponent,

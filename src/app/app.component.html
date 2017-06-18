@@ -1,2 +1,8 @@
-<h1 *ngIf="name">Hello {{name}},</h1>
-<account-list></account-list>
+<nav>
+    <ul>
+        <li><a [routerLink]="['/accounts']" href="">Accounts</a></li>
+        <li><a [routerLink]="['/cards']" href="">Cards</a></li>
+    </ul>
+</nav>
+
+<router-outlet></router-outlet>
