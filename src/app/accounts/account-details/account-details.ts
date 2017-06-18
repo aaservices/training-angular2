@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class AccountDetailsComponent {
     @Input() account: Account;
+
+    ngOnInit() {
+        console.log
+    }
 }
