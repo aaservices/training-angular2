@@ -11,8 +11,6 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
     styleUrls: ['app/accounts/account-list.component.css'],
     providers: [ AccountListService ]
 })
-
-
 export class AccountListComponent implements OnInit {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private errorMessage: string;
