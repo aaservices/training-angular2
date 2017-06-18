@@ -1,7 +1,7 @@
-import {Component, ViewChild, Inject, Optional} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {Account} from './account.type';
 import {SearchFormComponent} from '../utils/search-form/search-form';
-import {AccountListService} from './account-list.service';
+import {AccountListService} from './services/account-list.service';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
@@ -15,9 +15,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 export class AccountListComponent {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
-    private errorMessage: string;
     private accounts: Observable<Account[]>;
-    private searchTerm: string;
     private searchTermStream = new BehaviorSubject<string>('');
     private listVisibility: boolean;
     private selectedAccount: Account | null;
@@ -37,7 +35,7 @@ export class AccountListComponent {
             );
     }
 
-    getAccounts(searchTerm?:string) {
+    getAccounts(searchTerm?: string) {
         this.accounts = this.accountListService.getAccounts(searchTerm);
     }
 
@@ -59,6 +57,10 @@ export class AccountListComponent {
     }
 
     search(searchTerm: string): void {
+        if (!searchTerm) {
+            return;
+        }
+
         this.searchTermStream.next(searchTerm);
     }
 }

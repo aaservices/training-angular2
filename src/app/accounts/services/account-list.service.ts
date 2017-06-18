@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import {Account} from './account.type';
+import {Account} from '../account.type';
 
 @Injectable()
 export class AccountListService {

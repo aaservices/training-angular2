@@ -6,9 +6,8 @@
 
 <input type="button" value="Show/Hide List" (click)="toggleList()" />
 
-<div *ngIf="errorMessage" style="color: red;">{{errorMessage}}</div>
 <ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
-    <li *ngFor="let account of accounts | async | accountFilter:searchTerm">
+    <li *ngFor="let account of accounts | async">
         <account-list-item
             [account]="account"
             (accountSelect)="selectAccount($event)"
