@@ -16,6 +16,12 @@ export class CardListService {
         @Optional() private http: Http
     ) {}
 
+    getCard(id: string): Observable<Card> {
+        return this.http.get(`${this.cardsUrl}/${id}`)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     getCards(term?: string): Observable<Card[]> {
         let params = new URLSearchParams();
         params.set('q', term); // the card's name value
