@@ -1,6 +1,6 @@
 import { Account } from './../account.type';
 import { Component, Input, OnInit, OnChanges, AfterViewInit, OnDestroy } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {AccountListService} from '../services/account-list.service';
 import 'rxjs/add/operator/do';
 
@@ -14,6 +14,7 @@ export class AccountDetailsComponent implements OnInit, OnChanges, AfterViewInit
     private prevId: number;
     private nextId: number;
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private accountService: AccountListService
     ) {}
@@ -27,8 +28,6 @@ export class AccountDetailsComponent implements OnInit, OnChanges, AfterViewInit
                         .subscribe(
                             account => this.account = account
                         );
-                    this.prevId = parseInt(this.id, 0) - 1;
-                    this.nextId = parseInt(this.id, 0) + 1;
                 }
             );
 
@@ -45,5 +44,17 @@ export class AccountDetailsComponent implements OnInit, OnChanges, AfterViewInit
 
     ngOnDestroy() {
         console.log('on destroy');
+    }
+
+    goToNext() {
+        this.router.navigate(['/accounts', parseInt(this.account.id, 0) + 1]);
+    }
+
+    goToPrev() {
+        if (parseInt(this.account.id, 0) === 1) {
+            return;
+        }
+
+        this.router.navigate(['/accounts', parseInt(this.account.id, 0) - 1]);
     }
 }
