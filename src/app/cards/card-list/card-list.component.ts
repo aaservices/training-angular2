@@ -1,13 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Card} from './card.type';
-import {SearchFormComponent} from '../utils/search-form/search-form';
-import {CardListService} from './services/card-list.service';
+import {Card} from '../card.type';
+import {SearchFormComponent} from '../../utils/search-form/search-form';
+import {CardListService} from '../services/card-list.service';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Component({
     selector: 'card-list',
-    templateUrl: 'app/cards/card-list.component.html',
+    templateUrl: './card-list.component.html',
     providers: [CardListService]
 })
 
