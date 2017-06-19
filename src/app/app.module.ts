@@ -12,6 +12,7 @@ import { AccountFilterPipe } from './accounts/filters/account-filter.pipe';
 import { Logger } from './logger.service';
 import { AccountListService } from './accounts/services/account-list.service';
 import { AppRoutingModule } from './app-routing.module';
+import {PageNotFoundComponent} from './pages/page-not-found.component';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
         AccountListComponent,
         AccountListItemComponent,
         AccountDetailsComponent,
+        PageNotFoundComponent,
         AccountFilterPipe,
         SearchFormComponent
     ],
