@@ -18,6 +18,12 @@ export class AccountListService {
 
     }
 
+    getAccount(id: string): Observable<Account> {
+        return this.http.get(`${this.accountsUrl}/${id}`)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     getAccounts(term?: string): Observable<Account[]> {
         let params = new URLSearchParams();
         params.set('q', term); // the account's name value
