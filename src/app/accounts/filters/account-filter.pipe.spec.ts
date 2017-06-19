@@ -1,4 +1,4 @@
-import { Account } from './account.type';
+import { Account } from '../account.type';
 import { AccountFilterPipe } from './account-filter.pipe';
 
 describe('Account filtering based on search term', () => {

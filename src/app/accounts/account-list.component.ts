@@ -1,7 +1,7 @@
-import { Component, ViewChild, Inject, Optional, OnInit } from '@angular/core';
+import {Component, ViewChild, OnInit} from '@angular/core';
 import {Account} from './account.type';
 import {SearchFormComponent} from '../utils/search-form/search-form';
-import {AccountListService} from './account-list.service';
+import {AccountListService} from './services/account-list.service';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
@@ -9,7 +9,7 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
     selector: 'account-list',
     templateUrl: 'app/accounts/account-list.component.html',
     styleUrls: ['app/accounts/account-list.component.css'],
-    providers: [ AccountListService ]
+    providers: [AccountListService]
 })
 export class AccountListComponent implements OnInit {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
@@ -35,7 +35,7 @@ export class AccountListComponent implements OnInit {
             );
     }
 
-    getAccounts(searchTerm?:string) {
+    getAccounts(searchTerm?: string) {
         this.accounts = this.accountListService.getAccounts(searchTerm);
     }
 
@@ -57,6 +57,10 @@ export class AccountListComponent implements OnInit {
     }
 
     search(searchTerm: string): void {
+        if (!searchTerm) {
+            return;
+        }
+
         this.searchTermStream.next(searchTerm);
     }
 }
