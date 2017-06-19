@@ -1,0 +1,23 @@
+<search-form (changed)="search($event)"></search-form>
+
+<button type="button" (click)="clearFilter()">Clear</button>
+
+<h1>Your cards <span *ngIf="searchTerm">{{searchTerm}}</span>:</h1>
+
+<div *ngIf="(cards | async)?.length > 0">
+    <ul>
+        <li *ngFor="let card of cards | async">
+            <card-list-item
+                [card]="card"
+                (cardSelect)="selectCard($event)"
+            ></card-list-item>
+        </li>
+    </ul>
+
+    <div>
+      <h4>You have {{(cards | async)?.length }} cards</h4>
+    </div>
+</div>
+
+<card-details [card]="selectedCard">
+</card-details>

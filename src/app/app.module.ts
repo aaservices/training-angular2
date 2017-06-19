@@ -8,9 +8,9 @@ import { AccountListComponent } from './accounts/account-list.component';
 import { AccountListItemComponent } from './accounts/account-list-item/account-list-item';
 import { AccountDetailsComponent } from './accounts/account-details/account-details';
 import { SearchFormComponent } from './utils/search-form/search-form';
-import { AccountFilterPipe } from './accounts/account-filter.pipe';
+import { AccountFilterPipe } from './accounts/filters/account-filter.pipe';
 import { Logger } from './logger.service';
-import { AccountListService } from './accounts/account-list.service';
+import { AccountListService } from './accounts/services/account-list.service';
 
 @NgModule({
     imports: [

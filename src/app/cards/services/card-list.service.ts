@@ -5,29 +5,27 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import {Account} from './account.type';
+import {Card} from '../card.type';
 
 @Injectable()
-export class AccountListService {
+export class CardListService {
 
-    private accountsUrl = 'http://localhost:3004/accounts';  // URL to web API
+    private cardsUrl = 'http://localhost:3004/cards';  // URL to web API
 
     constructor(
         @Optional() private http: Http
-    ) {
+    ) {}
 
-    }
-
-    getAccounts(term?: string): Observable<Account[]> {
+    getCards(term?: string): Observable<Card[]> {
         let params = new URLSearchParams();
-        params.set('q', term); // the account's name value
+        params.set('q', term); // the card's name value
 
-        return this.http.get(this.accountsUrl, {search: params})
+        return this.http.get(this.cardsUrl, {search: params})
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    private extractData(res: Response): Account[] {
+    private extractData(res: Response): Card[] {
         return res.json().data || res.json() || { };
     }
 
