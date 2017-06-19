@@ -17,7 +17,7 @@ export class CardResolver implements Resolve<Card> {
         return this.cardListService.getCard(id)
             .map(card => card ? card : this.router.navigate(['/cards']))
             .catch((error: any): Observable<null> => {
-                console.log(`${error.toString()}. Redirecting to the cards list`)
+                console.log(`${error.toString()}. Redirecting to the cards list`);
                 this.router.navigate(['/cards']);
                 return Observable.of(null);
             });
