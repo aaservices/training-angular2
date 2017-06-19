@@ -4,14 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { AccountListComponent } from './accounts/account-list.component';
-import { AccountListItemComponent } from './accounts/account-list-item/account-list-item';
-import { AccountDetailsComponent } from './accounts/account-details/account-details';
-import { SearchFormComponent } from './utils/search-form/search-form';
-import { AccountFilterPipe } from './accounts/filters/account-filter.pipe';
 import { Logger } from './logger.service';
-import { AccountListService } from './accounts/services/account-list.service';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routableComponents, routableServices } from './app-routing.module';
 
 @NgModule({
     imports: [
@@ -22,13 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
     ],
     declarations: [
         AppComponent,
-        AccountListComponent,
-        AccountListItemComponent,
-        AccountDetailsComponent,
-        AccountFilterPipe,
-        SearchFormComponent
+        routableComponents
     ],
     bootstrap: [AppComponent],
-    providers: [Logger, AccountListService]
+    providers: [Logger, routableServices]
 })
 export class AppModule { }
