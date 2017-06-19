@@ -19,5 +19,5 @@
   <h4>You have {{(accounts | async)?.length }} accounts</h4>
 </div>
 
-<account-details [account]="selectedAccount">
+<account-details *ngIf="selectedAccount" [account]="selectedAccount">
 </account-details>

@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Card} from './card.type';
 import {SearchFormComponent} from '../utils/search-form/search-form';
 import {CardListService} from './services/card-list.service';
@@ -9,18 +9,20 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
     selector: 'card-list',
     templateUrl: 'app/cards/card-list.component.html',
     styleUrls: ['app/cards/card-list.component.css'],
-    providers: [ CardListService ]
+    providers: [CardListService]
 })
 
 
-export class CardListComponent {
+export class CardListComponent implements OnInit {
     @ViewChild(SearchFormComponent) searchForm: SearchFormComponent;
     private cards: Observable<Card[]>;
     private searchTermStream = new BehaviorSubject<string>('');
     private listVisibility: boolean;
     private selectedCard: Card | null;
 
-    constructor(private cardListService: CardListService) {
+    constructor(private cardListService: CardListService) {}
+
+    ngOnInit() {
         this.getCards();
         this.listVisibility = true;
         this.initSearchTerm();
