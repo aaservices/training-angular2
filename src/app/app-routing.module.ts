@@ -6,11 +6,13 @@ import {AccountListItemComponent} from './accounts/account-list-item/account-lis
 import {AccountFilterPipe} from './accounts/filters/account-filter.pipe';
 import {SearchFormComponent} from './utils/search-form/search-form';
 import {AccountListService} from './accounts/services/account-list.service';
+import {PageNotFoundComponent} from './pages/page-not-found.component';
 
 const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'accounts'},
     {path: 'accounts', component: AccountListComponent},
-    {path: 'accounts/:id', component: AccountDetailsComponent}
+    {path: 'accounts/:id', component: AccountDetailsComponent},
+    {path: '**', pathMatch: 'full', component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -24,7 +26,8 @@ export const routableComponents = [
     AccountListItemComponent,
     AccountDetailsComponent,
     AccountFilterPipe,
-    SearchFormComponent
+    SearchFormComponent,
+    PageNotFoundComponent
 ];
 
 export const routableServices = [
