@@ -11,6 +11,8 @@ import {CardListComponent} from './cards/card-list/card-list.component';
 import {CardResolver} from './cards/services/card-resolver.service';
 import {CardListService} from './cards/services/card-list.service';
 import {CardsComponent} from './cards/cards.component';
+import {AuthGuard} from './auth/services/auth-guard.service';
+import {AuthService} from './auth/services/auth.service';
 
 const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'accounts'},
@@ -27,6 +29,7 @@ const routes: Routes = [
             {
                 path: ':id',
                 component: CardDetailsComponent,
+                canActivate: [AuthGuard],
                 resolve: {
                     card: CardResolver
                 }
@@ -56,5 +59,7 @@ export const routableComponents = [
 export const routableServices = [
     AccountListService,
     CardListService,
-    CardResolver
+    CardResolver,
+    AuthService,
+    AuthGuard
 ];
