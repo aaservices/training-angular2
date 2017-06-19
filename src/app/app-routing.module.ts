@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {AccountDetailsComponent} from './accounts/account-details/account-details';
 import {AccountListComponent} from './accounts/account-list.component';
-import {AccountListItemComponent} from './accounts/account-list-item/account-list-item';
 import {AccountFilterPipe} from './accounts/filters/account-filter.pipe';
 import {SearchFormComponent} from './utils/search-form/search-form';
 import {AccountListService} from './accounts/services/account-list.service';
@@ -23,7 +22,6 @@ export class AppRoutingModule {}
 
 export const routableComponents = [
     AccountListComponent,
-    AccountListItemComponent,
     AccountDetailsComponent,
     AccountFilterPipe,
     SearchFormComponent,

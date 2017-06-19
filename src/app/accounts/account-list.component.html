@@ -9,17 +9,15 @@
 <input type="button" value="Show/Hide List" (click)="toggleList()" />
 
 <ul [ngStyle]="{display: listVisibility ? 'block': 'none'}">
-    <li *ngFor="let account of accounts | async">
-        <account-list-item
-            [account]="account"
-            (accountSelect)="selectAccount($event)"
-        ></account-list-item>
+    <li *ngFor="let account of accounts | async"
+        [routerLink]="['/accounts', account.id]">
+        {{account.name}}
+        <span *ngIf="account.friendlyName">({{account.friendlyName}}) </span>
+        -
+        {{account.amount | currency:'EUR':false}}
     </li>
 </ul>
 
 <div *ngIf="(accounts | async)?.length > 0">
   <h4>You have {{(accounts | async)?.length }} accounts</h4>
 </div>
-
-<account-details *ngIf="selectedAccount" [account]="selectedAccount">
-</account-details>

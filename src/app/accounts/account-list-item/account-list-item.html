@@ -1,8 +1,0 @@
-<div (click)="selectAccount(account)">
-    {{account.name}}
-    <span *ngIf="account.friendlyName">({{account.friendlyName}}) </span>
-    -
-    <span [ngClass]="{'positive': account.amount > 0, 'negative': account.amount < 0}">
-        {{account.amount | currency:'EUR':false}}
-    </span>
-</div>
