@@ -2,6 +2,7 @@ import { Account } from './../account.type';
 import { Component, Input, OnInit, OnChanges, AfterViewInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AccountListService} from '../services/account-list.service';
+import 'rxjs/add/operator/do';
 
 @Component({
     selector: 'account-details',
@@ -10,6 +11,7 @@ import {AccountListService} from '../services/account-list.service';
 export class AccountDetailsComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     @Input() account: Account;
     private id: string;
+    private prevId: number;
     private nextId: number;
     constructor(
         private route: ActivatedRoute,
@@ -17,12 +19,19 @@ export class AccountDetailsComponent implements OnInit, OnChanges, AfterViewInit
     ) {}
 
     ngOnInit() {
-        this.id = this.route.snapshot.params['id'];
-        this.accountService.getAccount(this.id)
+        this.route.params.map(params => params['id'])
+            .do(id => this.id = id)
             .subscribe(
-                account => this.account = account
+                id => {
+                    this.accountService.getAccount(this.id)
+                        .subscribe(
+                            account => this.account = account
+                        );
+                    this.prevId = parseInt(this.id, 0) - 1;
+                    this.nextId = parseInt(this.id, 0) + 1;
+                }
             );
-        this.nextId = parseInt(this.id, 0);
+
         console.log('on init');
     }
 

@@ -12,5 +12,6 @@
             {{account.amount | currency:'EUR':true}}
         </span>
     </div>
+    <a [routerLink]="['/accounts', prevId]">prev account</a> -
     <a [routerLink]="['/accounts', nextId]">next account</a>
 </div>
