@@ -8,13 +8,21 @@ import {AccountListService} from './accounts/services/account-list.service';
 import {PageNotFoundComponent} from './pages/page-not-found.component';
 import {CardDetailsComponent} from './cards/card-details/card-details';
 import {CardListComponent} from './cards/card-list.component';
+import {CardResolver} from './cards/services/card-resolver.service';
+import {CardListService} from './cards/services/card-list.service';
 
 const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'accounts'},
     {path: 'accounts', component: AccountListComponent},
     {path: 'accounts/:id', component: AccountDetailsComponent},
     {path: 'cards', component: CardListComponent},
-    {path: 'cards/:id', component: CardDetailsComponent},
+    {
+        path: 'cards/:id',
+        component: CardDetailsComponent,
+        resolve: {
+            card: CardResolver
+        }
+    },
     {path: '**', pathMatch: 'full', component: PageNotFoundComponent}
 ];
 
@@ -35,5 +43,7 @@ export const routableComponents = [
 ];
 
 export const routableServices = [
-    AccountListService
+    AccountListService,
+    CardListService,
+    CardResolver
 ];

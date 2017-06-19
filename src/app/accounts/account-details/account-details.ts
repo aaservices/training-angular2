@@ -1,6 +1,6 @@
-import { Account } from './../account.type';
-import { Component, Input, OnInit, OnChanges, AfterViewInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Account} from './../account.type';
+import {Component, Input, OnInit, OnChanges, AfterViewInit, OnDestroy} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AccountListService} from '../services/account-list.service';
 import 'rxjs/add/operator/do';
 
@@ -11,8 +11,7 @@ import 'rxjs/add/operator/do';
 export class AccountDetailsComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     @Input() account: Account;
     private id: string;
-    private prevId: number;
-    private nextId: number;
+
     constructor(
         private router: Router,
         private route: ActivatedRoute,
