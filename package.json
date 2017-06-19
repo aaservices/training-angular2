@@ -19,7 +19,7 @@
         "pretest:once": "npm run build",
         "test:once": "karma start karma.conf.js --single-run",
         "lint": "tslint ./src/**/*.ts -t verbose",
-        "server": "./node_modules/.bin/json-server --watch data/data.js --port 3004"
+        "server": "./node_modules/.bin/json-server --watch data/data.js --port 3004 -d 2000"
     },
     "keywords": [],
     "author": "",
