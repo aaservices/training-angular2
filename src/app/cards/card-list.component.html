@@ -6,18 +6,18 @@
 
 <div *ngIf="(cards | async)?.length > 0">
     <ul>
-        <li *ngFor="let card of cards | async">
-            <card-list-item
-                [card]="card"
-                (cardSelect)="selectCard($event)"
-            ></card-list-item>
+        <li *ngFor="let card of cards | async"
+            [routerLink]="['/cards', card.id]">
+            {{card.name}}
+            <span *ngIf="card.friendlyName">({{card.friendlyName}}) </span>
+            -
+            <span [ngClass]="{'positive': card.amount > 0, 'negative': card.amount < 0}">
+                {{card.amount | currency:'EUR':false}}
+            </span>
         </li>
     </ul>
 
     <div>
-      <h4>You have {{(cards | async)?.length }} cards</h4>
+        <h4>You have {{(cards | async)?.length }} cards</h4>
     </div>
 </div>
-
-<card-details [card]="selectedCard">
-</card-details>

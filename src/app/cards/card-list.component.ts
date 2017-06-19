@@ -8,7 +8,6 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 @Component({
     selector: 'card-list',
     templateUrl: 'app/cards/card-list.component.html',
-    styleUrls: ['app/cards/card-list.component.css'],
     providers: [CardListService]
 })
 
